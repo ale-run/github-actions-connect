@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+jobs:
+  hello-my-actions:
+    runs-on: ubuntu-latest
+    name: Ale Repository Connect
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: init
+        uses: ./
+        with:
+          endpoint: ${{ secrets.ALE_ENDPOINT }}
+          token: ${{ secrets.ALE_TOKEN }}
+          ghtoken: ${{ secrets.GITHUB_TOKEN }}
+          repo: ${{ github.repository }}
+          scope: test
+          readOnly: true

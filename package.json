@@ -1,0 +1,29 @@
+{
+  "name": "ale-github-actions-connect",
+  "version": "0.0.0",
+  "description": "Ale Github Actions - Connect Repository",
+  "main": "lib/action.js",
+  "author": "Ale <developer@ale.run>",
+  "license": "Apache-2.0",
+  "repository": "ale-run/github-actions-connect",
+  "scripts": {
+    "build": "rimraf lib && tsc && rimraf dist && ncc build --source-map --license LICENSE",
+    "dev": "npm run build && act workflow_dispatch --workflows '.github/workflows/test.yml' -s ALE_ENDPOINT=$ALE_ENDPOINT -s ALE_TOKEN=$ALE_TOKEN -s GITHUB_TOKEN=$GHP_TOKEN",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write **/*.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@actions/core": "1.10.1",
+    "@actions/github": "^6.0.0",
+    "node-fetch": "3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@vercel/ncc": "^0.38.1",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

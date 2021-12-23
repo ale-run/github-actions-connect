@@ -1,0 +1,29 @@
+name: Ale Github Actions - Connect
+author: Ale
+description: Connect the Github repository with the Ale scope
+inputs:
+  endpoint:
+    description: Ale API Endpoint
+    required: true
+  token:
+    description: Ale Access Token
+    required: true
+  ghtoken:
+    description: >
+      GitHub Personal access token used to read & write repository deploy key
+      [Learn more about creating and using encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
+    required: false
+    default: ${{ github.token }}
+  repo:
+    description: Github repository name.
+    required: false
+    default: ${{ github.repository }}
+  scope:
+    description: Scope name to connect with `repo` repository.
+    required: false
+  readOnly:
+    description: Create a read-only deploy key.
+    required: false
+runs:
+  using: node20
+  main: dist/index.js
